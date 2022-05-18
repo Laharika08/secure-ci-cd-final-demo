@@ -1,0 +1,30 @@
+{
+  "name": "@clinton-patel/hello-world",
+  "version": "1.0.10",
+  "description": "hello-world",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "postinstall": "npm run build --if-present",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clinton-patel/node-js.git"
+  },
+  "author": "clinton patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clinton-patel/node-js/issues"
+  },
+  "homepage": "https://github.com/clinton-patel/node-js#readme",
+  "dependencies": {
+    "coverage": "^0.4.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "request": "^2.88.2"
+  }
+}
