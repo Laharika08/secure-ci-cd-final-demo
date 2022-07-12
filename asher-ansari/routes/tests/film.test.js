@@ -2,6 +2,9 @@ const { app } = require("../../server");
 const superTest = require("supertest");
 const appWithSuperTest = superTest(app);
 describe('Film Trailer Endpoint', () => {
+    beforeAll(done => {
+        done()
+      })
     it('GET film/trailer/:movie_name should return an array of youtube urls', async () => {
         const res = await appWithSuperTest.get("/film/trailer/arrival-2016");
         expect(res.statusCode).toEqual(200);
@@ -12,4 +15,8 @@ describe('Film Trailer Endpoint', () => {
         const res = await appWithSuperTest.get("/film/trailer/arrival-2015");
         expect(res.statusCode).toEqual(404);
     });
+    afterAll(done => {
+        appWithSuperTest.close();
+        done()
+      })
 });

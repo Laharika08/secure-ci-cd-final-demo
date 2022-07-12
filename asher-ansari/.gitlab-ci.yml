@@ -1,0 +1,32 @@
+stages:
+  - test
+  - build
+
+# Job's name
+test-app:
+  # Define stage
+  stage: test
+  image: node:16-alpine3.14
+  tags:
+    - docker
+    - linux
+  # What to run on the job.
+  before_script:
+    - npm install
+    - cp $ENV_FILE .env
+  script:
+    - npm test
+
+build-app: 
+  stage: build
+  image: docker:19.03.13
+  services:
+    - docker:dind
+  tags:
+    - docker
+    - linux
+  before_script:
+    - cp $ENV_FILE .env
+    - docker login -u ashifa454 -p $DOCKER_PASSWORD
+  script:
+    - sh ./deployment/build.sh
