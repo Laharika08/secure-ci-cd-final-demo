@@ -1,0 +1,17 @@
+kind: source
+spec:
+  name: vault
+  registry: local
+  path: /Users/aly/work/aly/CloudQuery-Vault/cq-source-CloudQuery-Vault
+  #version: v1.0.0
+  destinations: ["sqlite"]
+  tables: ["vault"]
+  spec:
+---
+kind: destination
+spec:
+  name: sqlite
+  path: cloudquery/sqlite
+  version: v1.2.3
+  spec:
+    connection_string: ./sqlite.sql
