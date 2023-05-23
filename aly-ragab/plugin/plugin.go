@@ -1,8 +1,9 @@
 package plugin
 
 import (
-	"github.com/alyragab/cq-source-vault/client"
-	"github.com/alyragab/cq-source-vault/resources"
+	"alyragab/cq-source-vault/client"
+	"alyragab/cq-source-vault/resources"
+
 	"github.com/cloudquery/plugin-sdk/v2/plugins/source"
 	"github.com/cloudquery/plugin-sdk/v2/schema"
 )

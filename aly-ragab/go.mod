@@ -1,4 +1,4 @@
-module github.com/alyragab/cq-source-vault
+module alyragab/cq-source-vault
 
 go 1.19
 

@@ -12,6 +12,7 @@ It Gets Hashicorp/Vault Audit data from its local file (as audit file device) an
 
 It then truncates the content of that local file in order to keep it away from getting fully utilized
 
+We have to set the value of this environment variable `AUDIT_FILE_PATH`
 It can be executed using the below commands:
 
 ```bash

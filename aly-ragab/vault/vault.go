@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-var FilePath = "/Users/aly/work/vault/audit/audit.log"
+var FilePath = os.Getenv("AUDIT_FILE_PATH")
 
 func check(e error) {
 	if e != nil {

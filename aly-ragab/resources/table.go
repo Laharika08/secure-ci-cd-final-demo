@@ -3,8 +3,10 @@ package resources
 import (
 	"context"
 
-	"github.com/alyragab/cq-source-vault/client"
-	"github.com/alyragab/cq-source-vault/vault"
+	"alyragab/cq-source-vault/client"
+
+	"alyragab/cq-source-vault/vault"
+
 	"github.com/cloudquery/plugin-sdk/v2/schema"
 )
 
