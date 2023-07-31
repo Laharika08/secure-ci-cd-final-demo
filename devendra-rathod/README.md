@@ -19,7 +19,8 @@ Minikube is a CLI tool that provisions and manages the lifecycle of single-node 
 
 Start a Kubernetes cluster.
 
-![img.png](img.png)
+![img](https://github.com/bimodalconsulting/pre-hire-demos/assets/138932860/f822572a-f75b-41b6-8012-3d33c73c5d06)
+
 
 
 Install the Vault Helm chart
