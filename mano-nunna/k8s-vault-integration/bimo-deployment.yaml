@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bimo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bimo
+  template:
+    metadata:
+      labels:
+        app: bimo
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-status: 'update'
+        vault.hashicorp.com/role: "bimo"
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: 'secret/bimo/config'
+        vault.hashicorp.com/agent-inject-template-database-config.txt: |
+          {{- with secret "secret/bimo/config" -}}
+          postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/wizard
+          {{- end -}}
+    spec:
+      serviceAccountName: bimo-sa
+      containers:
+      - name: bimo
+        image: jweissig/app:0.0.1
