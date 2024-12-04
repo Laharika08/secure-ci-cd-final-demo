@@ -4,16 +4,10 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
-from uuid import uuid4
-from botocore.exceptions import NoCredentialsError
-import io
-import base64
-from datetime import datetime
 import os
 import cv2
 import numpy as np
 import mediapipe as mp  
-import boto3
 
 path = settings.MEDIA_ROOT
 fs = FileSystemStorage()
