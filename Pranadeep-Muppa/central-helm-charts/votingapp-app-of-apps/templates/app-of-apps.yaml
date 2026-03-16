@@ -1,0 +1,26 @@
+{{ if .Values.appofapps.enabled }}
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.appofapps.name }}
+  namespace: argocd
+spec:
+  destination:
+    namespace: {{ .Values.appofapps.destination.namespace }}
+    server: {{ .Values.appofapps.destination.server }}
+  project: default
+  source:
+    path: {{ .Values.appofapps.source.path }}
+    repoURL: {{ .Values.appofapps.source.repoURL }}
+    targetRevision: {{ .Values.appofapps.source.targetRevision }}
+  syncPolicy:
+    automated: 
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:    
+    - Validate=true 
+    - PrunePropagationPolicy=foreground 
+    - ApplyOutOfSyncOnly=true
+{{ end }}
