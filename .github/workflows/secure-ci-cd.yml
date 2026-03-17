@@ -77,7 +77,7 @@ jobs:
         uses: princespaghetti/setup-conftest@v1
 
       - name: Run OPA Policy Check
-        run: conftest test laharika-kanchanapalli/config/deployment.yaml
+        run: conftest test laharika-kanchanapalli/config/deployment.yaml --policy laharika-kanchanapalli/policy
 
   deploy:
     name: Deploy Application
