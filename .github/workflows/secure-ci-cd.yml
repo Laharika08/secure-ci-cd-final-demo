@@ -2,7 +2,7 @@ name: Secure CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, laharika-final-secure-cicd ]
   pull_request:
     branches: [ main ]
 
