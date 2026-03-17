@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-access-config
+  namespace: default
+data:
+  user1_tenant1_com: |
+    namespace: namespace1
+  user2_tenant1_com: |
+    namespace: namespace2

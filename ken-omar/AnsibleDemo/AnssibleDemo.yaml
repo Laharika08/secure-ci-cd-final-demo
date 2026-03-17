@@ -1,0 +1,21 @@
+---
+- name: Ken-Omar Vault To Ansible Demo
+  hosts: vault-docker
+  vars:
+    Vault_url: http://127.0.0.1:8200
+    Vault_Token: hvs.UFPfIfZlebGUZdo2eY8kIH3S
+    VaultData:  "{{ lookup('hashi_vault', 'secret=kv/docker token={{ Vault_Token }} url={{ Vault_url }}')}}"
+
+  tasks:
+
+  - name: "Hashicorp Vault  database container"
+    docker_container:
+      name: "{{ VaultData.db_name }}"
+      image: mysql:5.7
+      restart: true
+      env:
+        MYSQL_ROOT_PASSWORD: "{{ VaultData.root_password }}"
+        MYSQL_DATABASE: "{{ VaultData.db_name }}"
+        MYSQL_USER: "{{ VaultData.db_user }}"
+        MYSQL_PASSWORD: "{{ VaultData.db_password }}"
+

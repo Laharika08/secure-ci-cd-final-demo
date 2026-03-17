@@ -1,0 +1,63 @@
+# Prometheus configuration
+prometheus:
+  alertmanager:
+    enabled: true
+  pushgateway:
+    enabled: false
+  server:
+    enabled: true
+    service:
+      type: NodePort
+      nodePort: 30090
+      port: 9090
+
+# Grafana configuration
+grafana:
+  adminUser: admin
+  adminPassword: adminpassword
+
+  service:
+    type: NodePort
+    port: 30030
+    nodePort: 30030
+
+  ingress:
+    enabled: false  # Set to true if you want to enable ingress
+    annotations: 
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: instance
+      alb.ingress.kubernetes.io/backend-protocol: HTTP
+    hosts: {}
+    paths:
+      - /
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://prometheus-server.default.svc.cluster.local
+          access: proxy
+          isDefault: true
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: 'default'
+          orgId: 1
+          folder: ''
+          type: file
+          disableDeletion: false
+          options:
+            path: /var/lib/grafana/dashboards/default
+
+  dashboards:
+    default:
+      prometheus-overview:
+        gnetId: 3662
+        datasource: Prometheus
+        folder: ''
+        title: 'Prometheus Overview'
+

@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "voting-app-infra",
+			"path": "../voting-app-infra"
+		}
+	],
+	"settings": {}
+}

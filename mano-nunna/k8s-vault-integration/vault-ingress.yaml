@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vault-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # Ensure this is set to HTTP
+spec:
+  tls:
+  - hosts:
+    - vault.local
+    secretName: vault-tls # This is for the Ingress TLS, not Vault
+  rules:
+  - host: vault.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vault
+            port:
+              number: 8200
