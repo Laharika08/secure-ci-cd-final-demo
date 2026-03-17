@@ -28,6 +28,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install Dependencies
+        working-directory: ./laharika-kanchanapalli
         run: pip install -r requirements.txt
 
       - name: Run Semgrep (SAST)
@@ -50,6 +51,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
+          context: ./laharika-kanchanapalli
           push: true
           tags: ghcr.io/laharika08/secure-ci-cd-final-demo:latest
 
@@ -69,21 +71,24 @@ jobs:
         with:
           image-ref: ghcr.io/laharika08/secure-ci-cd-final-demo:latest
           severity: HIGH,CRITICAL
-          exit-code: 0
+          exit-code: 1
 
       - name: Set up Conftest
         uses: princespaghetti/setup-conftest@v1
 
       - name: Run OPA Policy Check
-        run: conftest test config/deployment.yaml
+        run: conftest test laharika-kanchanapalli/config/deployment.yaml
+
   deploy:
     name: Deploy Application
     runs-on: ubuntu-latest
     needs: security_checks
+
     environment:
       name: production
       url: https://example.com
+
     steps:
       - name: Deployment placeholder
         run: |
-          echo "Deploying ${IMAGE_NAME}:${IMAGE_TAG} to production..."
+          echo "Deploying image to production..."
