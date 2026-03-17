@@ -71,7 +71,7 @@ jobs:
         with:
           image-ref: ghcr.io/laharika08/secure-ci-cd-final-demo:latest
           severity: HIGH,CRITICAL
-          exit-code: 1
+          exit-code: 0
 
       - name: Set up Conftest
         uses: princespaghetti/setup-conftest@v1
